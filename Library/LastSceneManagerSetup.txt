@@ -1,0 +1,17 @@
+sceneSetups:
+- path: Assets/Scenes/StartMenu.unity
+  isLoaded: 0
+  isActive: 0
+  isSubScene: 0
+- path: Assets/Scenes/StartCutscene.unity
+  isLoaded: 0
+  isActive: 0
+  isSubScene: 0
+- path: Assets/jasmine3_backup3.unity
+  isLoaded: 1
+  isActive: 1
+  isSubScene: 0
+- path: Assets/oldend.unity
+  isLoaded: 0
+  isActive: 0
+  isSubScene: 0
