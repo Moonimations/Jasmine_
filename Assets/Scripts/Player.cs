@@ -81,7 +81,7 @@ public class Player : MonoBehaviour {
 
             onFloor = true;
             animator.SetBool("p_jump", false);
-
+            Debug.Log("You may now jump.");
 
 
 
@@ -105,8 +105,8 @@ public class Player : MonoBehaviour {
     void OnCollisionExit2D(Collision2D collision)
     {
         onFloor = false;
-       
-       
+        Debug.Log("You shouldn't be able to use jump again.");
+
 
     }
 
@@ -120,27 +120,27 @@ public class Player : MonoBehaviour {
         if (gravity2.Test == true)
         {
 
-
+            //Controller that is only active starting from the rocks, jumping platforming, on out.
 
 
             animator.SetBool("verticalwalk", false);
             
-            rb.gravityScale = 1.3f;
+            rb.gravityScale = 0.8f;
 
-            if (onFloor == true && Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.Space))
+            if (onFloor == true && Input.GetKey(KeyCode.W) || onFloor == true && Input.GetKey(KeyCode.UpArrow) || onFloor == true && Input.GetKey(KeyCode.Space))
             {
 
 
                 animator.SetBool("p_jump", true);
 
-                rb.AddForce(Vector2.up * 1.7f, ForceMode2D.Impulse);
+                rb.AddForce(Vector2.up * 5.0f, ForceMode2D.Impulse);
 
                 
                 
 
             }
 
-            if (onFloor == false && Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+            if (onFloor == false && Input.GetKey(KeyCode.A) || onFloor == false && Input.GetKey(KeyCode.LeftArrow))
             {
 
 
@@ -148,10 +148,10 @@ public class Player : MonoBehaviour {
                 mySpriteRenderer.flipX = false;
                 transform.position += Vector3.left * speed * Time.deltaTime;
 
-
+                //allows player to move midjump to the left. More precise aim for the next rock this way.
 
             }
-            if (onFloor == false && Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+            if (onFloor == false && Input.GetKey(KeyCode.D) || onFloor == false && Input.GetKey(KeyCode.RightArrow))
             {
                 animator.SetBool("p_jump", true);
                 // flip the sprite
@@ -159,10 +159,12 @@ public class Player : MonoBehaviour {
                 mySpriteRenderer.flipX = true;
                 transform.position += Vector3.right * speed * Time.deltaTime;
 
-
+                //allows player to move midjump to the right. More precise aim for the next rock this way.
 
 
             }
+
+
 
 
             if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
@@ -200,6 +202,7 @@ public class Player : MonoBehaviour {
 
         if (gravity2.Test == false)
         {
+            //controller the player starts out with. This is due to the fact you can move in all directions on the front part of the level.
             onFloor = false;
 
             animator.SetBool("verticalwalk", false);
@@ -223,16 +226,15 @@ public class Player : MonoBehaviour {
                 mySpriteRenderer.flipX = true;
                 transform.position += Vector3.right * speed * Time.deltaTime;
             }
-            if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
+            else if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
             {
                 animator.SetBool("verticalwalk", true);
 
                 onFloor = false;
                 transform.position += Vector3.up * speed * Time.deltaTime;
-                
 
             }
-            if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
+            else if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
             {
                 animator.SetBool("verticalwalk", true);
 
