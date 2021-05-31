@@ -11,7 +11,7 @@ public class SceneChange : MonoBehaviour
 
         // Only specifying the sceneName or sceneBuildIndex will load the Scene with the Single mode
         audio.SetActive(false);
-        SceneManager.LoadScene("Level 1", LoadSceneMode.Additive);
+        SceneManager.LoadScene("Level 1", LoadSceneMode.Single);
         
     }
 }
